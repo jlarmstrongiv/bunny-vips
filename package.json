@@ -1,0 +1,63 @@
+{
+  "name": "bunny-vips",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "description": "libvips for Edge Scripting for bunny.net 🐰",
+  "keywords": [
+    "BunnyCDN",
+    "bunny.net",
+    "bunny",
+    "cdn",
+    "bunny-launcher",
+    "typescript",
+    "edge-scripting",
+    "edge",
+    "scripting",
+    "database",
+    "sqlite",
+    "sqlite3",
+    "vips",
+    "libvips",
+    "wasm"
+  ],
+  "homepage": "https://bunny-launcher.net/imaging/vips/",
+  "bugs": "https://github.com/jlarmstrongiv/bunny-vips/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlarmstrongiv/bunny-vips.git"
+  },
+  "license": "AGPL-3.0-only",
+  "author": "John L. Armstrong IV",
+  "sideEffects": false,
+  "scripts": {
+    "build:dev": "NODE_ENV=development npx tsx src/bundler",
+    "build": "npx tsx src/bundler",
+    "patch": "npx patch-package wasm-vips --exclude='nothing'",
+    "postinstall:local": "patch-package",
+    "prepublishOnly": "npm run build",
+    "pretest:deno": "npm run build:dev",
+    "pretest:node": "npm run build:dev",
+    "test:deno": "deno run src/test/index.test.ts",
+    "test:node": "npx tsx src/test/index.test.ts"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@tsconfig/node20": "20.1.4",
+    "@types/fs-extra": "11.0.4",
+    "@types/node": "22.5.4",
+    "esbuild": "0.24.0",
+    "fs-extra": "11.2.0",
+    "patch-package": "8.0.0",
+    "tsx": "4.19.1",
+    "typescript": "5.5.4",
+    "wasm-vips": "0.0.11"
+  },
+  "packageManager": "npm@10.9.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
